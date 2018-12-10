@@ -1,0 +1,18 @@
+.ui.input > input {
+  border: none;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.15);
+}
+
+#form__button {
+  background: #f6008a;
+  color: #fff;
+}
+
+#nav__search {
+  cursor: pointer;
+}
+
+#button__primary {
+  background: #f6008a;
+  color: white;
+}

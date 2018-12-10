@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: teal;
+}
+
+body {
+  font-family: "Karla", sans-serif;
+  color: #595959 !important;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+}
+
+@media only screen and (max-width: 767px) {
+  .ui.container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  #home__container {
+    margin-top: 4rem;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+#home__container {
+  margin-top: 4rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.iframe-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
