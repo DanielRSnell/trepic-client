@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Container, Grid, Form, Button, Input, Icon } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import "./style.css";
-import * as apiUtils from "../../../utils/apiUtils";
 
 const Field = Form.Field;
 
@@ -21,17 +20,7 @@ class Register extends Component {
     this.setState({ [prop.type]: e.target.value });
   }
 
-  handleRegister() {
-    apiUtils
-      .adminCreate({
-        username: this.state.fullName.split(" ").join(""),
-        name: this.state.fullName,
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(res => console.log(res))
-      .catch(e => console.error(e));
-  }
+  handleRegister() {}
 
   changeRoute() {
     this.props.history.push(`/login`);
