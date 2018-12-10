@@ -18,7 +18,6 @@ class Register extends Component {
 
   handleInput(e, prop) {
     this.setState({ [prop.type]: e.target.value });
-    console.log();
   }
 
   handleRegister() {}
