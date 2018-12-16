@@ -1,6 +1,7 @@
 import history from "../history";
 import auth0 from "auth0-js";
 import axios from "axios";
+require("dotenv").config();
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
@@ -22,8 +23,39 @@ export default class Auth {
     this.auth0.authorize();
   }
 
+  CreateCustomer(data) {
+    axios
+      .get(`${process.env.REACT_APP_BASE}customer?search=${data.name}`)
+      .then(x => {
+        if (x.data.length === 0) {
+          axios
+            .post(
+              `${process.env.REACT_APP_BASE}customer`,
+              {
+                title: data.name,
+                status: "publish",
+                meta_box: {
+                  email: data.name,
+                  picture: data.picture
+                }
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
+                }
+              }
+            )
+            .then(res => localStorage.setItem("USER_ID", res.id))
+            .catch(e => console.error(e));
+        } else {
+          localStorage.setItem("USER_ID", x.data[0].id);
+        }
+      });
+  }
+
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
+      this.CreateCustomer(authResult.idTokenPayload);
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         history.replace("/");

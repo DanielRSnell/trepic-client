@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { Container } from "semantic-ui-react";
 import History from "./history";
@@ -12,6 +12,7 @@ import Register from "./components/container/Register";
 import List from "./components/container/List";
 import Footer from "./components/footer";
 import influencerPage from "./components/container/influencerPage";
+import StoryPage from "./components/container/storyPage";
 import Callback from "./Callback/Callback";
 import { tokenAction } from "./actions/sessionActions";
 const auth = new Auth();
@@ -32,28 +33,31 @@ class RouteFile extends Component {
       <Router history={History}>
         <Container fluid={true}>
           <NavTop auth={auth} />
-          <Route exact path={"/"} component={Home} />
-          <Route exact path={"/login"} component={Login} />
-          <Route
-            exact
-            path={"/register"}
-            render={props => <Register auth={auth} {...props} />}
-          />
-          <Route
-            path="/callback"
-            render={props => {
-              handleAuthentication(props);
-              return <Callback {...props} />;
-            }}
-          />
-          <Route exact path={"/destinations"} component={List} />
-          <Route exact path={"/influencers"} component={List} />
-          <Route exact path={"/activities"} component={List} />
-          <Route
-            exact
-            path={"/influencer/:id/:id"}
-            component={influencerPage}
-          />
+          <Switch>
+            <Route exact path={"/"} component={Home} />
+            <Route exact path={"/login"} component={Login} />
+            <Route
+              exact
+              path={"/register"}
+              render={props => <Register auth={auth} {...props} />}
+            />
+            <Route
+              path="/callback"
+              render={props => {
+                handleAuthentication(props);
+                return <Callback {...props} />;
+              }}
+            />
+            <Route exact path={"/destinations"} component={List} />
+            <Route exact path={"/influencers"} component={List} />
+            <Route exact path={"/activities"} component={List} />
+            <Route exact path={"/story/:id/:name"} component={StoryPage} />
+            <Route
+              exact
+              path={"/influencer/:id/:name"}
+              component={influencerPage}
+            />
+          </Switch>
           <Footer />
         </Container>
       </Router>

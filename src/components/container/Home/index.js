@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Grid, Button, Card, Icon, Table } from "semantic-ui-react";
+import { Icon, Loader } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import "./style.css";
 
@@ -22,7 +22,8 @@ class Home extends Component {
     showAll: true,
     influencerHeader: "Top Rated Influencers",
     areas: [],
-    data: []
+    data: [],
+    loading: true
   };
 
   componentDidMount() {
@@ -31,7 +32,7 @@ class Home extends Component {
     axios
       .get("https://admin.trepic.co/wp-json/wp/v2/influencer?per_page=6")
       .then(res => {
-        this.setState({ data: res.data });
+        this.setState({ data: res.data, loading: false });
       });
 
     for (var i = 0; i < 5; i++) {
@@ -49,14 +50,34 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <SnipCard />
-        <Hero />
-        <HorOverlayCard data={this.state.areas} />
-        <HorMetaCard
-          influencer={this.state.data}
-          showAll={this.state.showAll}
-          header={this.state.influencerHeader}
-        />
+        {this.state.loading === false ? (
+          <div>
+            <SnipCard />
+            <Hero />
+            <HorOverlayCard data={this.state.areas} />
+            <HorMetaCard
+              influencer={this.state.data}
+              showAll={this.state.showAll}
+              header={this.state.influencerHeader}
+            />
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "inherit",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              flex: 1
+            }}
+          >
+            <Loader
+              style={{ alignSelf: "center" }}
+              active
+              inline="centered"
+              size="massive"
+            />
+          </div>
+        )}
       </div>
     );
   }
