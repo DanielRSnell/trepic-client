@@ -1,5 +1,5 @@
 [build]
   command = "yarn build:netlify"
-  Functions = "lambda"
+  functions = "lambda"
   publish = "build"
 
