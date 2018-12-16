@@ -30,7 +30,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:lambda": "netlify-lambda serve src/lambda",
-    "build:lambda": "netlify-lambda build src/lambda"
+    "build:lambda": "netlify-lambda build src/lambda",
+    "build:netlify": "run-p build:**",
+    "start:netlify": "run-p start:**"
   },
   "eslintConfig": {
     "extends": "react-app"
