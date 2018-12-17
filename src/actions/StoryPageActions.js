@@ -51,7 +51,7 @@ export function hotelAction(id) {
   console.log(id);
   return function(dispatch) {
     return axios
-      .get(`http://data.zumata.com/hotels/BCRb/en_us/long.json`)
+      .get(`${process.env.REACT_APP_API + "test?id=" + id}`)
       .then(res => {
         dispatch({
           type: type.GET_ZUMATA_HOTEL,

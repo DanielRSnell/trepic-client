@@ -36,9 +36,11 @@ class StoryPage extends Component {
           this.props.actions
             .GetLodge(this.props.story.profile.meta_box["story_to_lodge_to"][0])
             .then(res => {
-              this.props.actions.hotelAction().then(() => {
-                this.setState({ lodge: true });
-              });
+              this.props.actions
+                .hotelAction(this.props.lodge.profile.meta_box.zumataid)
+                .then(() => {
+                  this.setState({ lodge: true });
+                });
             });
         });
     });

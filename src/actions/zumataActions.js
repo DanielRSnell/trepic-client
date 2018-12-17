@@ -6,15 +6,7 @@ export function hotelAction(id) {
   console.log(id);
   return function(dispatch) {
     return axios
-      .get(
-        `http://data.zumata.com/hotels/BCRb/en_us/long.json`,
-        {},
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*"
-          }
-        }
-      )
+      .get(`${env.process.REACT_APP_API + id}`)
       .then(res => {
         dispatch({
           type: type.GET_ZUMATA_HOTEL,

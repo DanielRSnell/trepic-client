@@ -1,8 +1,9 @@
 const axios = require("axios");
 
 exports.handler = function(event, context, callback) {
+  const query = event.queryStringParameters;
   axios
-    .get("http://data.zumata.com/hotels/BCRb/en_us/long.json")
+    .get(`http://data.zumata.com/hotels/${query.id}/en_us/long.json`)
     .then(res => {
       callback(null, {
         statusCode: 200,
