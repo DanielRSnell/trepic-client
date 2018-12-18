@@ -46,5 +46,8 @@ export default {
   zumata: {
     hotel: {},
     list: []
+  },
+  packages: {
+    items: {}
   }
 };

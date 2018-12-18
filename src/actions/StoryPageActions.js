@@ -62,3 +62,39 @@ export function hotelAction(id) {
       .catch(e => Promise.reject());
   };
 }
+
+export function hotelPackages(data) {
+  return function(dispatch) {
+    return axios
+      .get(
+        `${process.env.REACT_APP_API +
+          "packages?hotel_id=" +
+          data.id +
+          "&check_in_date=" +
+          data.startDate +
+          "&check_out_date=" +
+          data.endDate +
+          "&room_count=1&adult_count=" +
+          data.adults +
+          "&children=" +
+          data.children +
+          "&currency=USD&source_market=USD&key=" +
+          process.env.REACT_APP_ZUMATA}`,
+        {},
+        {
+          header: {
+            "X-session": process.env.REACT_APP_ZUMATA
+          }
+        }
+      )
+      .then(res => {
+        console.log(res.data);
+        dispatch({
+          type: type.GET_ZUMATA_PACKAGES,
+          payload: res.data
+        });
+        return Promise.resolve();
+      })
+      .catch(e => Promise.reject());
+  };
+}

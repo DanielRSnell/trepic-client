@@ -15,8 +15,9 @@ class TopComponent extends Component {
         fluid={true}
         style={{
           display: "flex",
-          height: "80%",
-          flexDirection: "column"
+          height: "30%",
+          flexDirection: "column",
+          marginBottom: "2rem"
         }}
       >
         {this.props.story.profile.meta_box !== undefined &&
@@ -25,7 +26,7 @@ class TopComponent extends Component {
             style={{
               display: "inherit",
               flexDirection: "row",
-              flex: 1,
+              flex: 2,
               background: "#f6f6f6"
             }}
             stackable

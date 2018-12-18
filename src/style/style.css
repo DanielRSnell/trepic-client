@@ -51,3 +51,22 @@ body {
   height: 100%;
   border: 0;
 }
+
+.DateRangePicker {
+  width: 100%;
+  text-align: center;
+}
+
+.DateRangePickerInput__withBorder {
+  width: 100%;
+}
+
+.ui.input > input {
+  box-shadow: none;
+  border: 1px solid #dadada;
+}
+
+b {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
