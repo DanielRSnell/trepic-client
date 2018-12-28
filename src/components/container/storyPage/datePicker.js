@@ -12,6 +12,7 @@ import {
 } from "semantic-ui-react";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
+import Carousel from "@brainhubeu/react-carousel";
 
 import { DateRangePicker, DayPickerRangeController } from "react-dates";
 import Amen from "./amen";
