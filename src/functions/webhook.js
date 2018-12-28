@@ -1,6 +1,6 @@
 const axios = require("axios");
 const mongoose = require("mongoose");
-const Hotel = require(".data/hotels");
+const Hotel = require("./data/hotels");
 
 mongoose.connect(
   `mongodb://${
