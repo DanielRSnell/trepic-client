@@ -38,7 +38,8 @@
     "eject": "react-scripts eject",
     "start:lambda": "netlify-lambda serve src/functions",
     "build:lambda": "netlify-lambda build src/functions",
-    "build:netlify": "yarn run build; yarn build:lambda"
+    "build:netlify": "yarn run build; yarn build:lambda",
+    "push": "git add . && git commit -m 'update' && git push origin master"
   },
   "eslintConfig": {
     "extends": "react-app"
