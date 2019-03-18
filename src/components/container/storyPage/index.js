@@ -19,7 +19,8 @@ class StoryPage extends Component {
       storyid: this.props.match.params.id,
       story: false,
       influencer: false,
-      lodge: false
+      lodge: false,
+      zumata: false
     };
     window.scroll(0, 0);
     this.props.actions.GetStory(this.state.storyid).then(() => {
@@ -44,6 +45,7 @@ class StoryPage extends Component {
                         `${i + 1}` +
                         this.props.zumata.hotel.image_details.suffix}`
                     });
+                    this.setState({zumata: true})
                   }
                   this.setState({ gallery: arr });
                 });
@@ -62,7 +64,6 @@ class StoryPage extends Component {
       adults: data.adults,
       children: data.children
     };
-    console.log(config);
     this.props.actions.hotelPackages(config);
   }
 
@@ -84,33 +85,10 @@ class StoryPage extends Component {
   }
 
   render() {
-    console.log(this.state, this.props);
-
-    return (
-      <Container
-        fluid={true}
-        style={{
-          display: "flex",
-          height: "100%",
-          flexDirection: "column"
-        }}
-      >
-        {this.state.story === true && this.state.influencer === true ? (
-          <TopComponent
-            {...this.state}
-            {...this.props}
-            onPrevious={this.onChangeImage.bind(this)}
-            onNext={this.onChangeImage.bind(this)}
-            style={{ marginBottom: "2rem" }}
-          />
-        ) : (
-          <div
-            style={{
-              display: "inherit",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              flex: 1
-            }}
+    if (this.state.story === false && this.state.influencer === false && this.state.lodge === false && this.state.zumata === false) {
+      return (
+        <div
+            
           >
             <Loader
               style={{ alignSelf: "center" }}
@@ -119,22 +97,26 @@ class StoryPage extends Component {
               size="massive"
             />
           </div>
-        )}
-        <Container
-          fluid={true}
-          style={{
-            display: "flex",
-            height: "80%",
-            flexDirection: "column"
-          }}
-        >
+      )
+    }
+    return (
+      <div>
+       
+          <TopComponent
+            {...this.state}
+            {...this.props}
+            onPrevious={this.onChangeImage.bind(this)}
+            onNext={this.onChangeImage.bind(this)}
+            style={{ marginBottom: "2rem" }}
+          />
+        
+        
           <DatePicker
             {...this.state}
             {...this.props}
             ViewPackages={this.onViewPackages.bind(this)}
           />
-        </Container>
-      </Container>
+      </div>
     );
   }
 }

@@ -7,14 +7,30 @@ export function GetStory(id) {
     return axios
       .get(`${process.env.REACT_APP_BASE}story/${id}`)
       .then(res => {
-        dispatch({
-          type: type.GET_STORY,
-          payload: res.data
-        });
+        GetExpImages(res.data, dispatch);
+        // dispatch({
+        //   type: type.GET_STORY,
+        //   payload: res.data
+        // });
         return Promise.resolve();
       })
       .catch(e => console.error(e));
   };
+}
+
+function GetExpImages(data, dispatch) {
+  console.log('GET STORY', data);
+  data.meta_box.experiences.map((item, index) => {
+    const arr = []
+    axios.get(`${process.env.REACT_APP_BASE}media/${item.exp_gallery[0]}`).then(res => {
+      console.log(res.data.media_details.sizes.full.source_url)
+      data.meta_box.experiences[index].exp_gallery = res.data.source_url
+    })
+  })
+  dispatch({
+    type: type.GET_STORY,
+    payload: data
+  })
 }
 
 export function GetInfluencer(id) {

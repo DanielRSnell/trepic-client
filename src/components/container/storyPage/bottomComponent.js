@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-class Amen extends Component {
+class bottomComponent extends Component {
   render() {
     return <div />;
   }
 }
 
-export default Amen;
+export default bottomComponent;

@@ -7,16 +7,21 @@ export function GetStory(id) {
     return axios
       .get(`${process.env.REACT_APP_BASE}story/${id}`)
       .then(res => {
-        dispatch({
-          type: type.GET_STORY,
-          payload: res.data
-        });
+        GetExpImages(res.data, dispatch);
+        // dispatch({
+        //   type: type.GET_STORY,
+        //   payload: res.data
+        // });
         return res.data;
       })
       .catch(() => {
         Promise.reject();
       });
   };
+}
+
+function GetExpImages(data, dispatch) {
+  console.log('GET STORY', data);
 }
 
 export function multipleStoryAction(ids) {

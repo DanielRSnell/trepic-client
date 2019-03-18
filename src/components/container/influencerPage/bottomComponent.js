@@ -88,7 +88,7 @@ class BottomComponent extends Component {
                             style={{ marginTop: "1.5rem" }}
                             onClick={() =>
                               this.onRoute(
-                                `${story[0].id +
+                                `${story[i].id +
                                   "/" +
                                   influencer.meta_box.name}`
                               )

@@ -12,10 +12,10 @@ import {
 } from "semantic-ui-react";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import Carousel from "@brainhubeu/react-carousel";
+import StoryForm from './StoryForm.js'
 
 import { DateRangePicker, DayPickerRangeController } from "react-dates";
-import Amen from "./amen";
+import Exp from './experience';
 
 class DatePicker extends Component {
   constructor(props) {
@@ -25,7 +25,8 @@ class DatePicker extends Component {
       endDate: null,
       focusedInput: null,
       adults: 1,
-      children: 0
+      children: 0,
+      viewPackages: false
     };
   }
 
@@ -35,32 +36,17 @@ class DatePicker extends Component {
 
   handleContextRef = contextRef => this.setState({ contextRef });
 
+  ViewPackages(state) {
+    this.setState({viewPackages: true})
+  }
+
   render() {
     const { contextRef } = this.state;
-    console.log("DATE PICKER", this.props);
     const content = this.props.zumata.hotel.description;
     return (
-      <Container style={{ marginBottom: "1rem" }}>
-        <Grid columns={5} style={{ margin: 0, padding: 0 }} doubling>
-          {this.props.gallery.map((item, i) => {
-            return (
-              <Grid.Column key={i} style={{ padding: 0, margin: 0 }}>
-                <div
-                  style={{
-                    padding: "8rem",
-                    background: `linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.5)), url(${
-                      item.image
-                    })`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    margin: ".1rem .1rem"
-                  }}
-                />
-              </Grid.Column>
-            );
-          })}
-        </Grid>
-        <Grid columns={2} centered style={{ padding: "2rem 1rem" }} stackable>
+      <Container style={{ marginBottom: "1rem", padding: '2rem 2rem' }} fluid={true}>
+       
+        <Grid columns={2} centered style={{ padding: "2rem 1rem" }} stackable doubling>
           <Grid.Column width={10} style={{ paddingRight: "5rem" }}>
             <Grid.Row>
               <span style={{ fontSize: 32, fontWeight: "bold" }}>
@@ -78,21 +64,37 @@ class DatePicker extends Component {
             </Grid.Row>
             <Divider style={{ margin: "1rem 0rem", padding: 0 }} />
             <Grid.Row>
-              <Amen amenities={this.props.zumata.hotel} />
+            <Grid columns={5} doubling stackable>
+          {this.props.gallery.map((item, i) => {
+            return (
+              <Grid.Column key={i} style={{ padding: 10, margin: 0 }} >
+                <div style={{ background: `url(${item.image}) 50% 50% no-repeat`, width: '100%', height: 125}} />
+              </Grid.Column>
+            );
+          })}
+        </Grid>
             </Grid.Row>
+            <Divider style={{ margin: "1rem 0rem", padding: 0 }} />
+            {this.props.story.profile ? (<Exp data={this.props.story.profile.meta_box.experiences} />
+              ): null}
+
+            
+            
           </Grid.Column>
 
           <Grid.Column width={6} style={{ margin: 0 }} centered>
+            
             <Sticky context={contextRef}>
+            {this.state.viewPackages === false ? (
+              <div>
               <Grid.Row
                 style={{ border: "1px solid #dadada", padding: "2rem" }}
               >
                 <Grid.Row>
                   <Grid.Row style={{ marginBottom: 10 }}>
                     <span style={{ fontSize: 24, fontWeight: "bold" }}>
-                      $435{" "}
-                    </span>{" "}
-                    <label style={{ fontWeight: "bold" }}>per night</label>
+                      Select Your Dates
+                      </span>
                   </Grid.Row>
                   <Grid.Row>
                     <Rating
@@ -121,7 +123,7 @@ class DatePicker extends Component {
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
                     onDatesChange={({ startDate, endDate }) => {
-                      console.log(startDate, endDate);
+                      
                       this.setState({ startDate, endDate });
                     }}
                     focusedInput={this.state.focusedInput}
@@ -239,7 +241,7 @@ class DatePicker extends Component {
                       background: "#f6008a",
                       color: "white"
                     }}
-                    onClick={() => this.props.ViewPackages(this.state)}
+                    onClick={() => this.ViewPackages(this.state)}
                     disabled={
                       this.state.endDate !== null &&
                       this.state.startDate !== null
@@ -257,6 +259,9 @@ class DatePicker extends Component {
                 </Grid.Row>
               </Grid.Row>
               <Grid.Row />
+              </div>
+              ): (<StoryForm data={this.props} other={this.state} />)
+}
             </Sticky>
           </Grid.Column>
         </Grid>

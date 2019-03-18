@@ -7,7 +7,7 @@ export default {
         name: "",
         cover: [{ full_url: "" }],
         gallery: [{ full_url: "" }],
-        vrGroup: [{ titile: "", url: "" }],
+        vrGroup: [],
         description: "",
         about: ""
       }

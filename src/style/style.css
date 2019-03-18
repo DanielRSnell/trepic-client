@@ -1,23 +1,17 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+
 
 a {
   color: teal;
 }
 
 body {
+  padding: 0;
+  margin: 0;
   font-family: "Karla", sans-serif;
   color: #595959 !important;
 }
 
-#root {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  display: flex;
-}
+
 
 @media only screen and (max-width: 767px) {
   .ui.container {

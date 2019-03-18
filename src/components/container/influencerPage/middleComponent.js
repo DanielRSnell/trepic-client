@@ -14,18 +14,22 @@ class MiddleComponent extends Component {
           verticalAlign="middle"
           centered
         >
+          {influencer.meta_box.vrGroup.length > 0 ? 
           <Grid.Column
             id="iframe-container"
             computer={7}
             style={{ marginRight: "2rem" }}
           >
+            
             <iframe
               id="iframe-container"
-              src={influencer.meta_box.vrGroup[0].url}
+              src={influencer.meta_box.vrGroup[0].url || ''}
               height="300px"
               width="100%"
-            />
-          </Grid.Column>
+              />
+              
+            </Grid.Column>
+            : null}
           <Grid.Column>
             <Grid.Row style={{ fontSize: 24, padding: "1rem" }}>
               <span style={{ color: "#dadada" }}>About </span>{" "}

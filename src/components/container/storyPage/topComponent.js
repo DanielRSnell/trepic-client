@@ -7,110 +7,38 @@ import {
   Icon,
   Rating
 } from "semantic-ui-react";
-class TopComponent extends Component {
-  componentWillReceiveProps() {}
-  render() {
-    return (
-      <Container
-        fluid={true}
-        style={{
-          display: "flex",
-          height: "30%",
-          flexDirection: "column",
-          marginBottom: "2rem"
-        }}
-      >
-        {this.props.story.profile.meta_box !== undefined &&
-        this.props.influencer.profile.meta_box !== undefined ? (
-          <Grid
-            style={{
-              display: "inherit",
-              flexDirection: "row",
-              flex: 2,
-              background: "#f6f6f6"
-            }}
-            stackable
-          >
-            <Grid.Column
-              computer={6}
-              style={{
-                padding: "4rem",
-                alignSelf: "center",
-                flex: 1
-              }}
-              only="computer"
-              verticalAlign="middle"
-            >
-              <Grid.Row>
-                <span style={{ fontSize: "2rem" }}>
-                  @{this.props.influencer.profile.meta_box.name}
-                </span>
-              </Grid.Row>
-              <Grid.Row style={{ marginTop: "2rem" }}>
-                <span style={{ fontSize: "3rem", fontWeight: "bold" }}>
-                  {this.props.story.profile.meta_box.name}
-                </span>
-              </Grid.Row>
-              <Grid.Row style={{ marginTop: "2rem" }}>
-                <span style={{ fontSize: "1.5rem", lineHeight: "2rem" }}>
-                  {this.props.story.profile.meta_box.about}
-                </span>
-              </Grid.Row>
-            </Grid.Column>
 
-            <Grid.Column
-              id="influencer__image"
-              computer={10}
-              style={{
-                background: `linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.5)), url(${
-                  this.props.story.profile.meta_box.gallery[this.props.current]
-                    .full_url
-                })`,
-                backgroundPosition: "bottom",
-                display: "flex",
-                padding: "4rem",
-                justifyContent: "space-between",
-                flexDirection: "column"
-              }}
-            >
-              <Grid.Row style={{ display: "inherit", alignSelf: "flex-end" }}>
-                <Button
-                  icon="heart"
-                  style={{
-                    color: this.props.heart === true ? "#f6008a" : null,
-                    display: "flex",
-                    alignSelf: "flex-end",
-                    background: "white"
-                  }}
-                  onClick={() => this.props.onHeart()}
-                />
-              </Grid.Row>
-              <Grid.Row
-                style={{ display: "inherit", justifyContent: "space-between" }}
-              >
-                <Button
-                  icon="angle left"
-                  style={{
-                    background: "white",
-                    display: "flex"
-                  }}
-                  onClick={() => this.props.onPrevious("prev")}
-                />
-                <Button
-                  icon="angle right"
-                  style={{
-                    background: "white",
-                    display: "flex"
-                  }}
-                  onClick={() => this.props.onNext("next")}
-                />
-              </Grid.Row>
-            </Grid.Column>
+export default class TopComponent extends Component {
+  componentWillReceiveProps() { }
+ 
+
+  render() {
+    console.log('TOP', this.props)
+    
+    return (
+      <Container fluid={true} >
+      <Grid columns={2} stackable verticalAlign='middle' style={{background: `linear-gradient(0deg,rgba(0, 0, 0,0.3),rgba(0, 0, 0,0.5)),url(${this.props.story.profile.meta_box.cover[0].full_url}) 50% 50% no-repeat`, height: '60vh', width: '100%'}}>
+      <Grid.Row verticalAlign='middle' style={{height: '100%'}}>
+      <Grid.Column style={{marginLeft: '3rem', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}} textAlign='center' verticalAlign='middle'>
+        <h1 style={{color: 'white', fontSize: '4rem', display: 'block'}}>{this.props.story.profile.meta_box.name}</h1>
+     
+        <h2 style={{color: 'white', fontSize: '2rem'}}>
+        {this.props.story.profile.meta_box.location}
+        </h2>
+        </Grid.Column>
+        <Grid.Column />
+        </Grid.Row>
+        </Grid>
+        <Grid columns={4} style={{padding: '2rem 2rem'}} doubling>
+        {this.props.story.profile.meta_box.gallery.map((item, index) => {
+          if (index < 4) {
+            return (<Grid.Column><Image src={item.full_url} style={{maxHeight: 200, width: '100%'}}/></Grid.Column>)
+          }
+        })}
           </Grid>
-        ) : null}
-      </Container>
+        </Container>
     );
   }
 }
 
-export default TopComponent;
+
