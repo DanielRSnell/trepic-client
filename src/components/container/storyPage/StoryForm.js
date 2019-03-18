@@ -26,7 +26,7 @@ export default class StoryForm extends Component {
                   }}
                 />
             <Grid.Row>
-                    <form className="ui form" name="Create Account" method="POST" data-netlify="true" >
+                    <form className="ui form" method="POST" data-netlify="true" >
                     <input type="hidden" name="form-name" value="contact" />
                 <div className="field">
                     <label>First Name</label>
