@@ -30,6 +30,26 @@ class DatePicker extends Component {
     };
   }
 
+  changeAdult(label) {
+    if (label === 'add') {
+      this.setState({adults: this.state.adults + 1})
+    } else {
+      if (this.state.adults !== 0) {
+        this.setState({ adults: this.state.adults - 1 })
+      }
+    }
+  }
+
+  changeChild(label) {
+    if (label === 'add') {
+      this.setState({children: this.state.children + 1})
+    } else {
+      if (this.state.children !== 0) {
+        this.setState({ children: this.state.children - 1 })
+      }
+    }
+  }
+
   createMarkup(content) {
     return { __html: content };
   }
@@ -154,6 +174,7 @@ class DatePicker extends Component {
                         background: "white",
                         border: "2px solid #f6008a"
                       }}
+                        onClick={() => this.changeAdult('add')}
                     />
                     <Input
                       style={{
@@ -174,6 +195,7 @@ class DatePicker extends Component {
                         background: "white",
                         border: "2px solid #f6008a"
                       }}
+                      onClick={() => this.changeAdult('minus')}
                     />
                   </Grid.Row>
                   <Grid.Row
@@ -200,6 +222,7 @@ class DatePicker extends Component {
                         background: "white",
                         border: "2px solid #f6008a"
                       }}
+                      onClick={() => this.changeChild('add')}
                     />
                     <Input
                       style={{
@@ -220,6 +243,7 @@ class DatePicker extends Component {
                         background: "white",
                         border: "2px solid #f6008a"
                       }}
+                      onClick={() => this.changeChild('minus')}
                     />
                   </Grid.Row>
                 </Grid.Row>
