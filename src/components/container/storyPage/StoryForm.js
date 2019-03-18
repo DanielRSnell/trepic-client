@@ -30,15 +30,15 @@ export default class StoryForm extends Component {
                     <input type="hidden" name="form-name" value="contact" />
                 <div className="field">
                     <label>First Name</label>
-                    <input placeholder="Jon" type="text" name="first name" />
+                    <input placeholder="Jon" type="text" name="First Name" />
                         </div>
                         <div className="field">
                     <label>Last Name</label>
-                    <input placeholder="Smith" type="text" name="last name"/>
+                    <input placeholder="Smith" type="text" name="Last Name"/>
                         </div>
                         <div className="field">
                     <label>Email</label>
-                    <input placeholder="Jon@Example.com" type="email" name="email"/>
+                    <input placeholder="Jon@Example.com" type="email" name="Email"/>
                         </div>
                         <Button
                             size="huge"
